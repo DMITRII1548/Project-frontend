@@ -1,7 +1,10 @@
 import axios from "axios"
-import router from "./router"
+import router from "./router/index.js"
 
-const api = axios.create()
+const api = axios.create({
+    baseURL: 'http://127.0.0.1:8000', // Установите ваш основной URL здесь
+})
+
 
 // start request
 
@@ -36,7 +39,8 @@ api.interceptors.response.use({}, error => {
             })
     }
     if (error.response.status === 401) {
-        router.push({ name: 'user.login' })
+        localStorage.setItem('access_token', '')
+        router.push({ name: 'login' })
     }
 })
 

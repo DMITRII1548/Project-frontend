@@ -33,17 +33,15 @@
   
       methods: {
           register() {
-            this.axios.get('/sanctum/csrf-cookie').then(response => {
-              this.axios.post('/api/register', {
-                  name: this.name,
-                  email: this.email, 
-                  password: this.password,
-                  password_confirmation: this.password_confirmation
-              })
-              .then(res => {
-                  console.log(res.data)
-              })               
-            });
+            this.axios.post('/api/register', {
+                name: this.name,
+                email: this.email, 
+                password: this.password,
+                password_confirmation: this.password_confirmation
+            })
+            .then(res => {
+                console.log(res.data)
+            }) 
           }
       }
   }

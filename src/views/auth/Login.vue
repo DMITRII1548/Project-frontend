@@ -25,17 +25,16 @@ export default {
 
     methods: {
         login() {
-            this.axios.get('/sanctum/csrf-cookie').then(response => {
-                this.axios.post('/api/auth/login', {
-                    email: this.email, 
-                    password: this.password,
-                })
-                .then(res => {
-                    // console.log(res)
-                    // this.axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`
-                    localStorage.setItem('token', res.data.access_token)
-                    // setCookie("X-XSRF-TOKEN", res.data.access_token);
-                })
+            this.axios.post('/api/auth/login', {
+                email: this.email, 
+                password: this.password,
+            })
+            .then(res => {
+                // console.log(res)
+                // this.axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`
+                localStorage.setItem('access_token', res.data.access_token)
+                this.$router.push('me')
+                // setCookie("X-XSRF-TOKEN", res.data.access_token);
             })
         }
     }

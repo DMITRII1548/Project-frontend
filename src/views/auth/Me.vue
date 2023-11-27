@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import API from './../../api.js'
+
 export default {
     name: 'Me',
 
@@ -23,13 +25,14 @@ export default {
 
     methods: {
         getMe() {
-            this.axios.get('/api/user', {
+            API.post('/api/auth/me', {}, {
                 headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    'authorization': `Bearer ${localStorage.getItem('access_token')}`
                 }
-            })    
+            })
                 .then(res => {
-                    console.log(res.data)
+                    this.name = res.data.name
+                    this.email = res.data.email
                 })
         }
     }
