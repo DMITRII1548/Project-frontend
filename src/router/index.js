@@ -56,7 +56,31 @@ const routes = [
     name: 'post.update',
     component: () => import('../views/post/Update.vue')
   },
-
+  {
+    path: '/category/update/:id',
+    name: 'category.update',
+    component: () => import('../views/category/Edit.vue')
+  },
+  {
+    path: '/category/create',
+    name: 'category.create',
+    component: () => import('../views/category/Create.vue')
+  },
+  {
+    path: '/product',
+    name: 'product.index',
+    component: () => import('../views/product/Index.vue')
+  },
+  {
+    path: '/product/create',
+    name: 'product.create',
+    component: () => import('../views/product/Create.vue')
+  },
+  {
+    path: '/product/update/:id',
+    name: 'product.update',
+    component: () => import('../views/product/Update.vue')
+  },
 ];
 
 const route =  VueRouter.createRouter({

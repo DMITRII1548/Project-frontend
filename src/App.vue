@@ -5,6 +5,7 @@
       <RouterLink to="/posts" class="btn btn-primary">Posts</RouterLink>
       <RouterLink to="/post/posts-controller" class="btn btn-primary">Post</RouterLink>
       <RouterLink to="/categories" class="btn btn-primary">Categories</RouterLink>
+      <RouterLink to="/product" class="btn btn-primary">Products</RouterLink>
       <RouterLink v-if="!token" to="/login" class="btn btn-primary">Sing in</RouterLink>
       <RouterLink v-if="!token" to="/register" class="btn btn-primary">Sing up</RouterLink>
       <RouterLink v-if="token" to="/me" class="btn btn-primary">Me</RouterLink>
