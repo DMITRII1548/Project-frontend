@@ -40,7 +40,7 @@
                 password_confirmation: this.password_confirmation
             })
             .then(res => {
-                console.log(res.data)
+                this.$router.push('login')
             }) 
           }
       }

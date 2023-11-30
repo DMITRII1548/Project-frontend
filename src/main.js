@@ -4,11 +4,13 @@ import axios from 'axios';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import store from "./store/index";
 
 const app = createApp(App);
 
 // Использование маршрутизатора Vue Router
 app.use(router);
+app.use(store)
 
 // Настройка Axios
 axios.defaults.withCredentials = true;

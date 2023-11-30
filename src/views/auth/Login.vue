@@ -30,11 +30,16 @@ export default {
                 password: this.password,
             })
             .then(res => {
-                // console.log(res)
-                // this.axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`
                 localStorage.setItem('access_token', res.data.access_token)
+
+                if (res.data.id === 1) {
+                    localStorage.setItem('admin', 'true')
+                } else {
+                    localStorage.setItem('admin', '')
+                }
+
+                window.location.reload()
                 this.$router.push('me')
-                // setCookie("X-XSRF-TOKEN", res.data.access_token);
             })
         }
     }

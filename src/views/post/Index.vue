@@ -17,8 +17,8 @@
       </tr>
     </tbody>
   </table>
-  <div class="flex mt-4">
-    <router-link v-if="user['id'] == 1" to="/post/get-all" class="btn btn-primary">Get All</router-link>
+  <div class="flex mt-4" v-if="isAdmin">
+    <router-link to="/post/get-all" class="btn btn-primary">Get All</router-link>
   </div>
 </template>
 
@@ -28,35 +28,18 @@ import API from './../../api'
 export default {
     name: 'Index',
 
-    data() {
-        return {
-            posts: [],
-            user: []
-        }
-    },
-
     mounted() {
-        this.getPosts()
-
-        if (localStorage.getItem('access_token')) {
-            this.getMe()
-        }
+        this.$store.dispatch('getPosts')
     },
 
-    methods: {
-        getPosts() {
-            this.axios.get('/api/post/posts-controller')
-                .then(res => {
-                    this.posts = res.data
-                })
-        },
+    computed: {
+      isAdmin() {
+        return localStorage.getItem('admin')
+      },
 
-        getMe() {
-            API.post('/api/auth/me')
-                .then(res => {
-                    this.user = res.data
-                })
-        }
+      posts() {
+          return this.$store.getters.posts
+      }
     }
 }
 </script>

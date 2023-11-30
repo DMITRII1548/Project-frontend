@@ -1,46 +1,32 @@
 <template>
   <h4>Update category</h4>
   <form action="" class="d-grid gap-3 mt-3 w-25">
-    <input type="text" class="form-control" v-model="name">
-    <button @click.prevent="updateCategory" class="btn btn-primary">Update</button>
+    <input type="text" class="form-control" v-model="category.name">
+    <button @click.prevent="$store.dispatch('updateCategory', { id: $route.params.id, name: category.name })" class="btn btn-primary">Update</button>
   </form>
-  <div class="row mt-3">
-    Status: {{ status }}
-  </div>
 </template>
 
 <script>
+import API from './../../api'
+
 export default {
     name: 'Edit',
 
     data() {
         return {
-            name: '',
             status: '',
         }
     },
 
     mounted() {
-        this.getCategory()
+        this.$store.dispatch('getCategory', this.$route.params.id)
     },
 
-    methods: {
-        getCategory() {
-            this.axios.get(`/api/category/${this.$route.params.id}`)
-                .then(res => {
-                    this.name = res.data.name
-                })
-        },
-
-        updateCategory() {
-            this.axios.put(`/api/category/update-Category/${this.$route.params.id}`, {
-                name: this.name
-            })
-                .then(res => {
-                    this.status = res.data
-                })
+    computed: {
+        category() {
+            return this.$store.getters.category
         }
-    }
+      }
 }
 </script>
 

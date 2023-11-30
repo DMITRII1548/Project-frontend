@@ -7,11 +7,6 @@ const routes = [
     component: () => import('../views/Main.vue')
   },
   {
-    path: '/posts',
-    name: 'posts.index',
-    component: () => import('../views/posts/Index.vue')
-  },
-  {
     path: '/categories',
     name: 'category.index',
     component: () => import('../views/category/Index.vue')
@@ -52,6 +47,11 @@ const routes = [
     component: () => import('../views/post/GetById.vue')
   },
   {
+    path: '/post/create',
+    name: 'post.create',
+    component: () => import('../views/post/Create.vue')
+  },
+  {
     path: '/post/update/:id',
     name: 'post.update',
     component: () => import('../views/post/Update.vue')
@@ -80,6 +80,36 @@ const routes = [
     path: '/product/update/:id',
     name: 'product.update',
     component: () => import('../views/product/Update.vue')
+  },
+  {
+    path: '/product/ByCategory/:id',
+    name: 'product.category',
+    component: () => import('../views/product/ByCategory.vue')
+  },
+  {
+    path: '/order/create/:id',
+    name: 'order.create',
+    component: () => import('../views/order/Create.vue')
+  },
+  {
+    path: '/order/',
+    name: 'order.index',
+    component: () => import('../views/order/Index.vue')
+  },
+  {
+    path: '/roles',
+    name: 'role.index',
+    component: () => import('../views/roles/Index.vue')
+  },
+  {
+    path: '/role/create',
+    name: 'role.create',
+    component: () => import('../views/roles/Create.vue')
+  },
+  {
+    path: '/role/show/:name',
+    name: 'role.show',
+    component: () => import('../views/roles/Show.vue')
   },
 ];
 

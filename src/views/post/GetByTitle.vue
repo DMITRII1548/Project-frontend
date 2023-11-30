@@ -1,37 +1,25 @@
 <template>
     <h4>Get post by title</h4>
     <div>
-      <p>Id: {{ id }}</p>
-      <p>Title: {{ title }}</p>
-      <p>Body: {{ body }}</p>
+      <p>Id: {{ post.id }}</p>
+      <p>Title: {{ post.title }}</p>
+      <p>Body: {{ post.body }}</p>
     </div>
   </template>
   
   <script>
   export default {
-      name: 'GetById',
-  
-      data() {
-          return {
-              id: null,
-              title: '',
-              body: ''
-          }
-      },
+      name: 'GetByTitle',
+
   
       mounted() {
-          this.getPost()
+          this.$store.dispatch('getPostByTitle', this.$route.params.title)
       },
   
-      methods: {
-          getPost() {
-              this.axios.get(`/api/post/post-by-title/${this.$route.params.title}`)
-                  .then(res => {
-                      this.id = res.data.id
-                      this.title = res.data.title
-                      this.body = res.data.body
-                  })
-          }
+      computed: {
+        post() {
+            return this.$store.getters.post
+        }
       }
   }
   </script>
